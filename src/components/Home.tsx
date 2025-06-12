@@ -1,7 +1,7 @@
 // components/HomeClient.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 import SearchBar from '@/components/SearchBar';
 import Pagination from '@/components/Pagination';
@@ -11,7 +11,6 @@ import { Product } from '@/types/product';
 const PRODUCTS_PER_PAGE = 8;
 
 export default function Home({ initialProducts }: { initialProducts: Product[] }) {
-    const [allProducts, setAllProducts] = useState<Product[]>(initialProducts);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>(initialProducts);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
@@ -23,14 +22,14 @@ export default function Home({ initialProducts }: { initialProducts: Product[] }
 
         setTimeout(() => {
             if (query.trim() === '') {
-                setFilteredProducts(allProducts);
+            if (query.trim() === '') {
+                setFilteredProducts(initialProducts);
             } else {
-                const filtered = allProducts.filter(product =>
+                const filtered = initialProducts.filter(product =>
                     product.title.toLowerCase().includes(query.toLowerCase()) || product.description.toLowerCase().includes(query.toLowerCase())
                 );
                 setFilteredProducts(filtered);
             }
-            setCurrentPage(1);
             setIsSearching(false);
         }, 300);
     };

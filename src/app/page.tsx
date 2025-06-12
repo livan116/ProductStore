@@ -9,7 +9,7 @@ export default async function HomePage() {
     return <Home initialProducts={products} />;
   }
   catch (error) {
-    // console.error('Error fetching products:', error);
+    console.error('Error fetching products:', error);
     return <LoadingSpinner />; 
   }
 }
