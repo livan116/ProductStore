@@ -20,8 +20,8 @@ export default function Home({ initialProducts }: { initialProducts: Product[] }
         setIsSearching(true);
         setSearchQuery(query);
 
+    
         setTimeout(() => {
-            if (query.trim() === '') {
             if (query.trim() === '') {
                 setFilteredProducts(initialProducts);
             } else {
@@ -30,9 +30,10 @@ export default function Home({ initialProducts }: { initialProducts: Product[] }
                 );
                 setFilteredProducts(filtered);
             }
+            setCurrentPage(1);
             setIsSearching(false);
-        }, 300);
-    };
+        }, 1000);
+    }
 
     const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
     const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
